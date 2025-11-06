@@ -1,14 +1,12 @@
 name : Deploy to prod
 on : 
   push:
-     branches: { new_main }
+     branches: [ new_main ]
       
 jobs:
   redeploy_fe:
-     
      runs-on: ubuntu-latest
      name : Deploying frontend
-
      steps:
       -run : |
          echo ${{ secrets.SSH_PRIVATE_KEY }} &> ~/SSH_KEY
