@@ -6,7 +6,7 @@ on :
 jobs:
   redeploy_fe:
      
-     run-on: ubuntu-latest
+     runs-on: ubuntu-latest
      name : Deploying frontend
 
      steps:
