@@ -4,11 +4,11 @@ on :
      branches: [ new_main ]
       
 jobs:
-  redeploy_fe:
+  redeploy_everything:
      runs-on: ubuntu-latest
      name : Deploying frontend
      steps:
-      run : |
+      -run : |
          echo ${{ secrets.SSH_PRIVATE_KEY }} &> ~/SSH_KEY
          ssh -i SSH_KEY ubuntu@ip
          cd turbo-repo-staging && git pull origin main 
