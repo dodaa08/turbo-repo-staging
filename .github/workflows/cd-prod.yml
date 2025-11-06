@@ -1,0 +1,20 @@
+name : Deploy to prod
+on : 
+  push:
+     branches: { new_main }
+      
+jobs:
+  redeploy_fe:
+     
+     run-on: ubuntu-latest
+     name : Deploying frontend
+
+     steps:
+      -run : |
+         echo ${{ secrets.SSH_PRIVATE_KEY }} &> ~/SSH_KEY
+         ssh -i SSH_KEY ubuntu@ip
+         cd turbo-repo-staging && git pull origin main 
+         pnpm install
+         pnpm rum build
+         pm2 restart all
+

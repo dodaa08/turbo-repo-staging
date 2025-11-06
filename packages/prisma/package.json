@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc"
+    "build": "(test -f src/generated/prisma/client.js || DATABASE_URL=postgresql://localhost:5432/dummy prisma generate) && tsc && find src/generated/prisma -name '*.so.node' -exec cp {} dist/generated/prisma/ \\;"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
