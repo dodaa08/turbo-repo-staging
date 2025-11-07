@@ -27,10 +27,12 @@ app.post("/signup", async (req, res)=>{
 });
 
 
-app.get("/", ()=>{
+app.get("/", (req, res)=>{
     console.log("default route..");
+    res.send("Hello World");
+    // res.json({ message: "HTTP API is running" });
 });
 
-app.listen(port, ()=>{
+app.listen(port, '0.0.0.0', ()=>{
     console.log("Listening on ", port);
 })
