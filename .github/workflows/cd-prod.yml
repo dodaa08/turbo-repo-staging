@@ -9,7 +9,7 @@ jobs:
      name: Deploying all
      steps:
       - run: |
-          # Create and secure the private key file
+          
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/SSH_KEY
           chmod 600 ~/SSH_KEY
           
