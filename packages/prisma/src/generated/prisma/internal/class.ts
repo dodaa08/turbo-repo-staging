@@ -22,7 +22,7 @@ const config: runtime.GetPrismaClientConfig = {
       "value": "prisma-client"
     },
     "output": {
-      "value": "/home/kartik/Work/Devops/AWS/turboR/packages/prisma/src/generated/prisma",
+      "value": "/home/kartik/Work/Devops/turbo-repo-staging/packages/prisma/src/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -36,7 +36,7 @@ const config: runtime.GetPrismaClientConfig = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/home/kartik/Work/Devops/AWS/turboR/packages/prisma/prisma/schema.prisma",
+    "sourceFilePath": "/home/kartik/Work/Devops/turbo-repo-staging/packages/prisma/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativePath": "../../../prisma",
@@ -46,6 +46,7 @@ const config: runtime.GetPrismaClientConfig = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
