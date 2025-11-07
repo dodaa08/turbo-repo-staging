@@ -13,7 +13,7 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/SSH_KEY
           chmod 600 ~/SSH_KEY
           
-          # Connect via SSH and run all commands on the remote server
+          
           ssh -i ~/SSH_KEY -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
             # --- ADD THIS BLOCK TO LOAD NVM ---
             export NVM_DIR="$HOME/.nvm"
