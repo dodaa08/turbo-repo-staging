@@ -14,11 +14,11 @@ jobs:
           chmod 600 ~/SSH_KEY
           
           # Connect via SSH and run all commands on the remote server
-          ssh -i ~/SSH_KEY -o StrictHostKeyChecking=no ubuntu@ip << 'EOF'
+          ssh -i ~/SSH_KEY -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
             cd turbo-repo-staging
-            git pull origin main
+            git pull origin new_main  # <-- Make sure this matches your push branch
             pnpm install
-            pnpm run build  # Fixed typo: was 'rum'
+            pnpm run build
             pm2 restart all
           EOF
 
