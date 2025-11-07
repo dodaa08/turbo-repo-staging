@@ -15,7 +15,7 @@ jobs:
           
           
           ssh -i ~/SSH_KEY -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
-            # --- ADD THIS BLOCK TO LOAD NVM ---
+            
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
             # ----------------------------------
