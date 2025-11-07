@@ -6,13 +6,19 @@ on :
 jobs:
   redeploy_everything:
      runs-on: ubuntu-latest
-     name: Deploying frontend
+     name: Deploying all
      steps:
-      - run : |
-         echo "${{ secrets.SSH_PRIVATE_KEY }}" &> ~/SSH_KEY
-         ssh -i SSH_KEY ubuntu@ip
-         cd turbo-repo-staging && git pull origin main 
-         pnpm install
-         pnpm rum build
-         pm2 restart all
+      - run: |
+          # Create and secure the private key file
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/SSH_KEY
+          chmod 600 ~/SSH_KEY
+          
+          # Connect via SSH and run all commands on the remote server
+          ssh -i ~/SSH_KEY -o StrictHostKeyChecking=no ubuntu@ip << 'EOF'
+            cd turbo-repo-staging
+            git pull origin main
+            pnpm install
+            pnpm run build  # Fixed typo: was 'rum'
+            pm2 restart all
+          EOF
 
