@@ -1,0 +1,35 @@
+# Build stage
+FROM node:22-alpine as build
+
+WORKDIR /app
+
+RUN npm install -g pnpm
+
+# Copy workspace configuration and all files
+COPY pnpm-workspace.yaml pnpm-lock.yaml package.json ./
+COPY packages ./packages
+COPY apps/web ./apps/web
+
+# Install all dependencies (including workspace packages)
+RUN pnpm install
+
+# Build only the frontend app
+WORKDIR /app/apps/web
+RUN pnpm run build
+
+# Production stage
+FROM node:22-alpine
+
+WORKDIR /app
+
+ENV NODE_ENV=production
+ENV PORT=3000
+
+# Copy standalone output
+COPY --from=build /app/apps/web/.next/standalone ./
+COPY --from=build /app/apps/web/.next/static ./.next/static
+COPY --from=build /app/apps/web/public ./public
+
+EXPOSE 3000
+
+CMD ["node", "server.js"]
