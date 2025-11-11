@@ -1,0 +1,16 @@
+# Buld Stage
+FROM node:22-alpine AS build
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Build prod
